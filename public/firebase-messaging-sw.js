@@ -1,6 +1,10 @@
 importScripts('https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/7.17.1/firebase-messaging.js');
 
+importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js');
+
+
 firebase.initializeApp({
     apiKey: "AIzaSyCehShC7k5EUsNKQI2hyDDEqT7bMM0OwJ0",
     authDomain: "react-quiz-pwa.firebaseapp.com",
