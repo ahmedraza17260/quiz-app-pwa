@@ -17,11 +17,11 @@ const assets = [
     // `https://opentdb.com/api.php?amount=${newQuestions.amount}&difficulty=${newQuestions.difficulty}&type=multiple`
 ];
 
-self.addEventListener("activate", function (e) {
+this.addEventListener("activate", function (e) {
     console.log("[ServiceWorker] Activate");
 });
 
-self.addEventListener('install', function (e) {
+this.addEventListener('install', function (e) {
     console.log('[ServiceWorker] Install');
     e.waitUntil(
         caches.open(quizCache).then(function (cache) {
@@ -31,7 +31,7 @@ self.addEventListener('install', function (e) {
     );
 });
 
-self.addEventListener('fetch', function (e) {
+this.addEventListener('fetch', function (e) {
     console.log('[ServiceWorker] Fetch', e.request.url);
     e.respondWith(
         caches.match(e.request).then(function (response) {
