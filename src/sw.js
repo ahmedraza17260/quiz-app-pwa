@@ -1,7 +1,7 @@
 const quizCache = 'Quiz-Cache';
 const assets = [
-    // 'https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple',
     // 'https://opentdb.com/api.php?amount=10&difficulty=easy',
+    // 'https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple',
     `https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple`,
 
     "/static/js / bundle.js",
@@ -12,8 +12,10 @@ const assets = [
     "/manifest.json",
     "/firebase-messaging-sw.js",
     "/src/API.ts",
+    "/localhost:3000",
     "/index.html",
-    "/"
+    "/public/favicon.ico",
+    "/",
     // `https://opentdb.com/api.php?amount=${newQuestions.amount}&difficulty=${newQuestions.difficulty}&type=multiple`
 ];
 
