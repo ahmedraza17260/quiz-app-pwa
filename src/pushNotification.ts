@@ -22,7 +22,7 @@ export const permissionToReceiveNotifications = () => {
 
     Notification.requestPermission().then(async (permission) => {
 
-        if (permission == 'granted') {
+        if (permission === 'granted') {
 
             try {
 
@@ -44,7 +44,7 @@ export const permissionToReceiveNotifications = () => {
                 console.log('An error occurred while retrieving token. ', error);
 
 
-                //BUT THE NEW TOKEN SUCCESSFULY FETCHED
+                //BUT THE NEW TOKEN SUCCESSFULLY FETCHED
                 const token = await messaging.getToken();
 
                 if (token) {
@@ -61,7 +61,7 @@ export const permissionToReceiveNotifications = () => {
 
     })
         .catch(error => console.log(error));
-
+}
 
 // export const permissionToReceiveNotifications = async () => {
 //     try {
