@@ -1,6 +1,4 @@
 import firebase from 'firebase';
-importScripts('/__/firebase/6.6.2/firebase-app.js');
-importScripts('/__/firebase/6.6.2/firebase-messaging.js');
 // import 'firebase/<PACKAGE>';
 
 export const initializeFirebase = () => {
