@@ -39,9 +39,10 @@ export const fetchQuizQuestions = async (amount: number, difficulty: Difficulty)
         return getCachedData('Quiz-Cache', url);
     });
 
+    //eslint-disable-next-line  
     var { results } = res;
 
-    return results.results.map((question: Question) => ({
+    return res.results.map((question: Question) => ({
         ...question,
         answers: shuffleArray([...question.incorrect_answers, question.correct_answer])
     }))

@@ -14,65 +14,68 @@ export const initializeFirebase = () => {
     });
 }
 
-export const permissionToReceiveNotifications = () => {
+export const permissionToReceiveNotifications = async () => {
+    try {
+        const messaging = firebase.messaging();
+        await messaging.requestPermission();
+        const token = await messaging.getToken();
+        //console.log('Token:', token);
 
-    const messaging = firebase.messaging();
-
-    Notification.requestPermission().then(async (permission) => {
-
-        if (permission === 'granted') {
-
-            try {
-
-                const token = await messaging.getToken();
-
-                if (token) {
-
-                    console.log(token);
-                    return token;
-                }
-
-                else {
-                    console.log('No Instance ID token available. Request permission to generate one.');
-                }
-            }
-
-            catch (error) {
-
-                console.log('An error occurred while retrieving token. ', error);
-
-
-                //BUT THE NEW TOKEN SUCCESSFULLY FETCHED
-                const token = await messaging.getToken();
-
-                if (token) {
-
-                    console.log(token);
-                    return token;
-                }
-
-                else {
-                    console.log('No Instance ID token available. Request permission to generate one.');
-                }
-            }
-        }
-
-    })
-        .catch(error => console.log(error));
+        return token;
+    } catch (error) {
+        console.error(error);
+    }
 }
 
-// export const permissionToReceiveNotifications = async () => {
-//     try {
-//         const messaging = firebase.messaging();
-//         await messaging.requestPermission();
-//         const token = await messaging.getToken();
-//         //console.log('Token:', token);
 
-//         return token;
-//     } catch (error) {
-//         console.error(error);
-//     }
+
+// export const permissionToReceiveNotifications = () => {
+
+//     const messaging = firebase.messaging();
+
+//     Notification.requestPermission().then(async (permission) => {
+
+//         if (permission === 'granted') {
+
+//             try {
+
+//                 const token = await messaging.getToken();
+
+//                 if (token) {
+
+//                     console.log(token);
+//                     return token;
+//                 }
+
+//                 else {
+//                     console.log('No Instance ID token available. Request permission to generate one.');
+//                 }
+//             }
+
+//             catch (error) {
+
+//                 console.log('An error occurred while retrieving token. ', error);
+
+
+//                 //BUT THE NEW TOKEN SUCCESSFULLY FETCHED
+//                 const token = await messaging.getToken();
+
+//                 if (token) {
+
+//                     console.log(token);
+//                     return token;
+//                 }
+
+//                 else {
+//                     console.log('No Instance ID token available. Request permission to generate one.');
+//                 }
+//             }
+//         }
+
+//     })
+//         .catch(error => console.log(error));
 // }
+
 
 
 

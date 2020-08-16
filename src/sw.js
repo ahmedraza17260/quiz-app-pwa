@@ -6,6 +6,7 @@ const assets = [
     'https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple',
     'https://opentdb.com/api.php?amount=10&difficulty=hard&type=multiple',
 
+    "/localhost:3000",
     "/static/js / bundle.js",
     "/static/js/1.chunk.js",
     "/static/js/main.chunk.js",
@@ -14,7 +15,6 @@ const assets = [
     "/manifest.json",
     "/firebase-messaging-sw.js",
     "/src/API.ts",
-    "/localhost:3000",
     "/index.html",
     "/public/favicon.ico",
     "/",
@@ -25,7 +25,7 @@ const assets = [
 //     // console.log("[ServiceWorker] Activate");
 // });
 
-self.addEventListener('install', function (e) {
+this.addEventListener('install', function (e) {
     // console.log('[ServiceWorker] Install');
     e.waitUntil(
         caches.open(quizCache).then(function (cache) {
@@ -36,14 +36,14 @@ self.addEventListener('install', function (e) {
 });
 
 
-// self.addEventListener('fetch', function (e) {
-//     // console.log('[ServiceWorker] Fetch', e.request.url);
-//     e.respondWith(
-//         caches.match(e.request).then(function (response) {
-//             return response || fetch(e.request);
-//         })
-//     );
-// });
+this.addEventListener('fetch', function (e) {
+    console.log('[ServiceWorker] Fetch', e.request.url);
+    e.respondWith(
+        caches.match(e.request).then(function (response) {
+            return response || fetch(e.request);
+        })
+    );
+});
 
 
 
@@ -93,17 +93,17 @@ self.addEventListener('install', function (e) {
 //     )
 // })
 
-// self.addEventListener("fetch", (event) => {
-//     if (!navigator.onLine) {
-//         event.responseWith(
-//             caches.match(event.request).then((resp) => {
-//                 if (resp) {
-//                     return resp;
-//                 }
-//                 let requestUrl = event.request.clone();
-//                 return fetch(requestUrl)
-//             })
-//         )
+this.addEventListener("fetch", (event) => {
+    if (!navigator.onLine) {
+        event.responseWith(
+            caches.match(event.request).then((resp) => {
+                if (resp) {
+                    return resp;
+                }
+                let requestUrl = event.request.clone();
+                return fetch(requestUrl)
+            })
+        )
 
-//     }
-// })
+    }
+})
