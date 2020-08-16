@@ -82,7 +82,7 @@ const App: React.FC = () => {
   async function sendNotification() {
     const messaging = firebase.messaging();
     const token = await messaging.getToken();
-    console.log('TOKEN in Component: ', token);
+    // console.log('TOKEN in Component: ', token);
     const response = await axios.post(
       'https://fcm.googleapis.com/fcm/send',
       {

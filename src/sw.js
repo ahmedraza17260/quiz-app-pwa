@@ -2,7 +2,7 @@ const quizCache = 'Quiz-Cache';
 const assets = [
     // 'https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple',
     // 'https://opentdb.com/api.php?amount=10&difficulty=easy',
-    'https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple',
+    `https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple`,
 
     "/static/js / bundle.js",
     "/static/js/1.chunk.js",
@@ -17,22 +17,23 @@ const assets = [
     // `https://opentdb.com/api.php?amount=${newQuestions.amount}&difficulty=${newQuestions.difficulty}&type=multiple`
 ];
 
-this.addEventListener("activate", function (e) {
-    console.log("[ServiceWorker] Activate");
+self.addEventListener("activate", function (e) {
+    // console.log("[ServiceWorker] Activate");
 });
 
-this.addEventListener('install', function (e) {
-    console.log('[ServiceWorker] Install');
+self.addEventListener('install', function (e) {
+    // console.log('[ServiceWorker] Install');
     e.waitUntil(
         caches.open(quizCache).then(function (cache) {
-            console.log('[ServiceWorker] Caching app shell');
+            // console.log('[ServiceWorker] Caching app shell');
             return cache.addAll(assets);
         })
     );
 });
 
-this.addEventListener('fetch', function (e) {
-    console.log('[ServiceWorker] Fetch', e.request.url);
+
+self.addEventListener('fetch', function (e) {
+    // console.log('[ServiceWorker] Fetch', e.request.url);
     e.respondWith(
         caches.match(e.request).then(function (response) {
             return response || fetch(e.request);
@@ -41,13 +42,17 @@ this.addEventListener('fetch', function (e) {
 });
 
 
+
+
+
+
 // this.addEventListener('install', (event) => {
 //     event.waitUntil(
 //         caches.open(quizCache).then((cache) => {
 //             cache.addAll(assets);
 //         })
 //     )
-// })
+// });
 
 
 // window.addEventListener('fetch', function (event) {
@@ -63,6 +68,8 @@ this.addEventListener('fetch', function (e) {
 //     );
 // });
 // let cacheData = "quizApp";
+
+
 
 // this.addEventListener("install", (event) => {
 //     event.waitUntil(
@@ -82,12 +89,17 @@ this.addEventListener('fetch', function (e) {
 //     )
 // })
 
-// this.addEventListener("fetch", (event) => {
-//     event.responseWith(
-//         caches.match(event.request).then(result) => {
-//         if(result) {
-//             return result
-//         }
+// self.addEventListener("fetch", (event) => {
+//     if (!navigator.onLine) {
+//         event.responseWith(
+//             caches.match(event.request).then((resp) => {
+//                 if (resp) {
+//                     return resp;
+//                 }
+//                 let requestUrl = event.request.clone();
+//                 return fetch(requestUrl)
+//             })
+//         )
+
 //     }
-//     )
 // })
