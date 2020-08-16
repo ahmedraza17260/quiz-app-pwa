@@ -1,4 +1,6 @@
 import firebase from 'firebase';
+importScripts('/__/firebase/6.6.2/firebase-app.js');
+importScripts('/__/firebase/6.6.2/firebase-messaging.js');
 // import 'firebase/<PACKAGE>';
 
 export const initializeFirebase = () => {
@@ -14,19 +16,65 @@ export const initializeFirebase = () => {
     });
 }
 
+export const permissionToReceiveNotifications = () => {
 
-export const permissionToReceiveNotifications = async () => {
-    try {
-        const messaging = firebase.messaging();
-        await messaging.requestPermission();
-        const token = await messaging.getToken();
-        //console.log('Token:', token);
+    const messaging = firebase.messaging();
 
-        return token;
-    } catch (error) {
-        console.error(error);
-    }
-}
+    Notification.requestPermission().then(async (permission) => {
+
+        if (permission == 'granted') {
+
+            try {
+
+                const token = await messaging.getToken();
+
+                if (token) {
+
+                    console.log(token);
+                    return token;
+                }
+
+                else {
+                    console.log('No Instance ID token available. Request permission to generate one.');
+                }
+            }
+
+            catch (error) {
+
+                console.log('An error occurred while retrieving token. ', error);
+
+
+                //BUT THE NEW TOKEN SUCCESSFULY FETCHED
+                const token = await messaging.getToken();
+
+                if (token) {
+
+                    console.log(token);
+                    return token;
+                }
+
+                else {
+                    console.log('No Instance ID token available. Request permission to generate one.');
+                }
+            }
+        }
+
+    })
+        .catch(error => console.log(error));
+
+
+// export const permissionToReceiveNotifications = async () => {
+//     try {
+//         const messaging = firebase.messaging();
+//         await messaging.requestPermission();
+//         const token = await messaging.getToken();
+//         //console.log('Token:', token);
+
+//         return token;
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
 
 
 
