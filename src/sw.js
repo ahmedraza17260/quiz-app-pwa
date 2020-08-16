@@ -1,8 +1,8 @@
 const quizCache = 'Quiz-Cache';
 const assets = [
     // 'https://opentdb.com/api.php?amount=10&difficulty=easy',
-    // 'https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple',
-    `https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple`,
+    // `https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple`,
+    'https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple',
 
     "/static/js / bundle.js",
     "/static/js/1.chunk.js",
@@ -19,9 +19,9 @@ const assets = [
     // `https://opentdb.com/api.php?amount=${newQuestions.amount}&difficulty=${newQuestions.difficulty}&type=multiple`
 ];
 
-self.addEventListener("activate", function (e) {
-    // console.log("[ServiceWorker] Activate");
-});
+// self.addEventListener("activate", function (e) {
+//     // console.log("[ServiceWorker] Activate");
+// });
 
 self.addEventListener('install', function (e) {
     // console.log('[ServiceWorker] Install');
@@ -34,14 +34,14 @@ self.addEventListener('install', function (e) {
 });
 
 
-self.addEventListener('fetch', function (e) {
-    // console.log('[ServiceWorker] Fetch', e.request.url);
-    e.respondWith(
-        caches.match(e.request).then(function (response) {
-            return response || fetch(e.request);
-        })
-    );
-});
+// self.addEventListener('fetch', function (e) {
+//     // console.log('[ServiceWorker] Fetch', e.request.url);
+//     e.respondWith(
+//         caches.match(e.request).then(function (response) {
+//             return response || fetch(e.request);
+//         })
+//     );
+// });
 
 
 
