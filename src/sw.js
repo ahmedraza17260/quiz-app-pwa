@@ -3,6 +3,8 @@ const assets = [
     // 'https://opentdb.com/api.php?amount=10&difficulty=easy',
     // `https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple`,
     'https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple',
+    'https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple',
+    'https://opentdb.com/api.php?amount=10&difficulty=hard&type=multiple',
 
     "/static/js / bundle.js",
     "/static/js/1.chunk.js",
